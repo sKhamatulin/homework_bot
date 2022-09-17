@@ -41,12 +41,12 @@ logger.addHandler(handler)
 
 
 def send_message(bot, message):
-    """Конечная функция отправки сообщения"""
+    """Конечная функция отправки сообщения."""
     bot.send_message(TELEGRAM_CHAT_ID, message)
 
 
 def get_api_answer(current_timestamp):
-    """делает запрос к единственному эндпоинту API-сервиса"""
+    """делает запрос к единственному эндпоинту API-сервиса."""
     timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
     headers = {'Authorization': f'OAuth {PRACTICUM_TOKEN}'}
@@ -58,7 +58,7 @@ def get_api_answer(current_timestamp):
 
 
 def check_response(response):
-    """проверяет ответ API на корректность"""
+    """проверяет ответ API на корректность."""
     if response == {}:
         logging.error('яндекс вернул пустой словарь')
         raise Exception('яндекс вернул пустой словарь')
@@ -74,8 +74,7 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """звлекает из информации о конкретной
-    домашней работе статус этой работы"""
+    """Извлекает из словаря статус работы."""
     homework_name = homework['homework_name']
     homework_status = homework['status']
     verdict = HOMEWORK_STATUSES[homework_status]
@@ -84,8 +83,7 @@ def parse_status(homework):
 
 
 def check_tokens():
-    """проверяет доступность переменных окружения,
-    которые необходимы для работы программы"""
+    """Проверяет доступность переменных окружения."""
     if PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID is not None:
         return True
     return False
