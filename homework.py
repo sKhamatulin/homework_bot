@@ -60,7 +60,7 @@ def get_api_answer(current_timestamp):
     logger.info('Попытка отправить запрос')
     try:
         response = requests.get(ENDPOINT, headers=headers, params=params)
-    except Exception as error:
+    except exceptions.ServerError as error:
         logger.error(f'ошибка при запросе к эндпоинту {error}')
     if response.status_code != 200:
         raise exceptions.StatusCodeError('API не вернула 200')
