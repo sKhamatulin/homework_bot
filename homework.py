@@ -45,11 +45,7 @@ def send_message(bot, message):
         bot.send_message(TELEGRAM_CHAT_ID, message)
         logger.info(f'Cообщение отправленно: {message}')
     except telegram.error.TelegramError as error:
-        logger.error('сбой при отправке сообщения в Telegram '
-                     f'ошибка: {error}')
-        bot.send_message(TELEGRAM_CHAT_ID,
-                         'сбой при отправке сообщения в Telegram '
-                         f'ошибка: {error}')
+        raise exceptions.SendError(f'Ошибка при отправке сообщения: {error}')
 
 
 def get_api_answer(current_timestamp):
@@ -60,8 +56,9 @@ def get_api_answer(current_timestamp):
     logger.info('Попытка отправить запрос')
     try:
         response = requests.get(ENDPOINT, headers=headers, params=params)
-    except exceptions.ServerError as error:
-        logger.error(f'ошибка при запросе к эндпоинту {error}')
+    except Exception as error:
+        raise exceptions.ServerError('Ошибка при запросе к эндпоинту: '
+                                     f'{error}')
     if response.status_code != 200:
         raise exceptions.StatusCodeError('API не вернула 200')
     logger.info('Ответ от API успешно получен')
@@ -131,7 +128,7 @@ def main():
                     send_message(bot, message)
             else:
                 logger.debug('отсутствие в ответе новых статусов')
-        except exceptions.ServerError as error:
+        except Exception as error:
             message = f'Сбой в работе программы: {error}'
             send_message(bot, message)
             logger.exception('сбой при отправке сообщения в Telegram')

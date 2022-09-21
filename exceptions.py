@@ -14,3 +14,9 @@ class ServerError(Exception):
     """Невозможно подключится к серверу."""
 
     pass
+
+
+class SendError(Exception):
+    """Ошибка при отправке сообщения."""
+
+    pass
