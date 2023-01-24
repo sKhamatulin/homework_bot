@@ -14,7 +14,7 @@
 3) Запустить
 
 ```
-git clone github.com/sKhamatulin/hw05_final
+git clone github.com/sKhamatulin/homework_bot
 pip install -r requirements.txt
 python3 homework.py
 ```
