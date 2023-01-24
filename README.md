@@ -1,21 +1,20 @@
 # Check Ya HomeWork
-## _Bot for checking status review_
+## _Бот для рповерки статуса домашней работы ушедшей на проверку_
+Работает на API от Яндекс.Практикум
 ###  
-- check changes
-- send messege in telegram
+- проверяет изменени
+- присылает новый статус в ТГ
 
-## Stack
+## Системные требования
 - Python 3.7
 
-## Start To Project
-- _requirements.txt_ - Install dependencies from *requirements.txt*
+### Порядок установки.
+1) Клонировать
+2) Установить зависимости
+3) Запустить
+
 ```
+git clone github.com/sKhamatulin/hw05_final
 pip install -r requirements.txt
-```
-- _-python3 homework.py_ for  start working
-```
 python3 homework.py
 ```
-### Autor Sergey Khamatulin [git]
-
-[git]: <https://github.com/sKhamatulin>
